@@ -2,7 +2,11 @@
 /.venv/
 
 # Visual Studio Code #
+/.vscode/
 
 # Pycache #
 __pycache__
 *.pyc
+
+# database #
+db.sqlite3
