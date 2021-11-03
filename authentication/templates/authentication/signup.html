@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
+    <h2>Register</h2>
+    {% if form.errors %}
+        {{ form.errors }}
+    {% endif %}
     <form method="post">
         {{ form.as_p }}
         {% csrf_token %}
-        <button type="submit" >Connect</button>
+        <button type="submit" >Signup</button>
     </form>
-    <p>Pas encore membre ? <a href="{% url 'signup' %}">Sign up now!</a></p>
 {% endblock content %}

@@ -2,6 +2,22 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.views.generic import View
+from django.conf import settings
+
+from . import forms
+
+
+def signup(request):
+    form = forms.SignupFrom()
+    if request.method == 'POST':
+        form = forms.SignupFrom(request.POST)
+        if form.is_valid():
+            user = form.save()
+            # auto login user
+            login(request, user)
+            return redirect(settings.LOGIN_REDIRECT_URL)
+    return render(request, 'authentication/signup.html',
+                  context={'form': form})
 
 
 def logout_user(request):
