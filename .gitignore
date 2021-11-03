@@ -1,0 +1,8 @@
+# Virtual Env #
+/.venv/
+
+# Visual Studio Code #
+
+# Pycache #
+__pycache__
+*.pyc
