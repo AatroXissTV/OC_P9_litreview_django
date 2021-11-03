@@ -9,4 +9,3 @@ __pycache__
 *.pyc
 
 # database #
-db.sqlite3
