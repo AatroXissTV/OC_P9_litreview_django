@@ -1,7 +1,26 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
+
+from . import forms
+from . import models
 
 
 @login_required
 def home(request):
-    return render(request, 'app/home.html')
+    tickets = models.Ticket.objects.all()
+    return render(request, 'app/home.html', context={'ticket': tickets})
+
+
+@login_required
+def ticket_upload(request):
+    form = forms.TicketForm()
+    if request.method == 'POST':
+        form = forms.TicketForm(request.POST, request.FILES)
+        if form.is_valid():
+            ticket = form.save(commit=False)
+            # set the uploader to the user before saving the model
+            ticket.user = request.user
+            # now we can save
+            ticket.save()
+            return redirect('home')
+    return render(request, 'app/create_ticket.html', context={'form': form})

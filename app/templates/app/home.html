@@ -1,4 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
     <p>You are connected</p>
+    <h2>Tickets</h2>
+    {% for ticket in tickets %}
+        <p>{{ ticket.user }} asked for a review</p>
+        <p>{{ ticket.time_created }}</p>
+        <h3>{{ ticket.title }}</h3>
+        <p>{{ ticket.description }}</p>
+    {% endfor %}
 {% endblock content %}
