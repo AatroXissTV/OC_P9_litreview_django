@@ -5,6 +5,7 @@
     {% for ticket in tickets %}
         <p>{{ ticket.user }} asked for a review</p>
         <p>{{ ticket.time_created }}</p>
+        <img src="{{ ticket.image.url }}" alt="">
         <h3>{{ ticket.title }}</h3>
         <p>{{ ticket.description }}</p>
     {% endfor %}
