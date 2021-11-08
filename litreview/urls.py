@@ -32,7 +32,7 @@ urlpatterns = [
     ), name='login'),
     path('logout', authentication.views.logout_user, name='logout'),
     path('signup/', authentication.views.signup, name='signup'),
-    path('home/create_ticket', app.views.ticket_upload, name='create_ticket'),
+    path('home/create_ticket', app.views.create_ticket, name='create_ticket'),
     path('home/', app.views.home, name='home'),
 ]
 

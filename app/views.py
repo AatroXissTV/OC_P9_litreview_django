@@ -12,7 +12,7 @@ def home(request):
 
 
 @login_required
-def ticket_upload(request):
+def create_ticket(request):
     form = forms.TicketForm()
     if request.method == 'POST':
         form = forms.TicketForm(request.POST, request.FILES)
@@ -24,3 +24,8 @@ def ticket_upload(request):
             ticket.save()
             return redirect('home')
     return render(request, 'app/create_ticket.html', context={'form': form})
+
+
+@login_required
+def create_review(request):
+    pass
