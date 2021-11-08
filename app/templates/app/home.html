@@ -1,12 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
+    <p><a href="{% url 'home' %}">Home</a></p>
+    <p><a href="{% url 'create_ticket' %}">Create Ticket</a></p>
+    <p><a href="{% url 'create_review' %}">Create Review</a></p>
     <p>You are connected</p>
-    <h2>Tickets</h2>
-    {% for ticket in tickets %}
-        <p>{{ ticket.user }} asked for a review</p>
-        <p>{{ ticket.time_created }}</p>
-        <img src="{{ ticket.image.url }}" alt="">
-        <h3>{{ ticket.title }}</h3>
-        <p>{{ ticket.description }}</p>
-    {% endfor %}
+    <h2>Feed</h2>
+    <div class="grid-container">
+        {% for review in reviews %}
+            <div class="review">
+                <a href="{% url 'view_review' review.id %}">
+                    <h4>Review: {{ review.title }}</h4>
+                    <img src="{{ review.ticket.image.url }}" alt="">
+                </a>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock content %}

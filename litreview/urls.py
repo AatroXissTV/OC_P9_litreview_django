@@ -34,6 +34,9 @@ urlpatterns = [
     path('signup/', authentication.views.signup, name='signup'),
     path('home/create_ticket', app.views.create_ticket, name='create_ticket'),
     path('home/create_review', app.views.create_review, name='create_review'),
+    path('home/<int:review_id>', app.views.view_review, name='view_review'),
+    path('home/<int:review_id>/edit', app.views.edit_review,
+         name='edit_review'),
     path('home/', app.views.home, name='home'),
 ]
 
