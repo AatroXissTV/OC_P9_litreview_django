@@ -28,4 +28,22 @@ def create_ticket(request):
 
 @login_required
 def create_review(request):
-    pass
+    ticket_form = forms.TicketForm()
+    review_form = forms.ReviewForm()
+    if request.method == 'POST':
+        ticket_form = forms.TicketForm(request.POST, request.FILES)
+        review_form = forms.ReviewForm(request.POST)
+        if all([ticket_form.is_valid(), review_form.is_valid()]):
+            ticket = ticket_form.save(commit=False)
+            ticket.user = request.user
+            ticket.save()
+            review = review_form.save(commit=False)
+            review.author = request.user
+            review.ticket = ticket
+            review.save()
+            return redirect('home')
+    context = {
+        'ticket_form': ticket_form,
+        'review_form': review_form,
+    }
+    return render(request, 'app/create_review.html', context=context)
