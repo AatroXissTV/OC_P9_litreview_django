@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h3>Follow other users</h3>
+    <form method="post">
+        {% for field in formulaire %}
+        {% csrf_token %}
+        {{ field }}
+        {% endfor %}
+    </form>
+    <h3>Subscribed</h3>
+    {% for sub in subs %}
+        <p>{{ sub.followed_user }}</p>
+    {% endfor %}
+    <h3>Subscriber</h3>
+    {% for follower in followers %}
+        <p>{{ follower.user }}</p>
+    {% endfor %}
+{% endblock content %}
