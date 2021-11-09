@@ -40,7 +40,7 @@ def create_review(request):
             ticket.user = request.user
             ticket.save()
             review = review_form.save(commit=False)
-            review.author = request.user
+            review.user = request.user
             review.ticket = ticket
             review.save()
             return redirect('home')
