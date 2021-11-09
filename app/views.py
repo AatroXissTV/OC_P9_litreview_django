@@ -68,11 +68,11 @@ def edit_review(request, review_id):
             if edit_review.is_valid():
                 edit_review.save()
                 return redirect('home')
-            if 'delete_review' in request.POST:
-                delete_review = forms.DeleteReviewForm(request.POST)
-                if delete_review.is_valid():
-                    review.delete()
-                    return redirect('home')
+        if 'delete_review' in request.POST:
+            delete_review = forms.DeleteReviewForm(request.POST)
+            if delete_review.is_valid():
+                review.delete()
+                return redirect('home')
     context = {
         'edit_review': edit_review,
         'delete_review': delete_review,

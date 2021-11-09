@@ -8,4 +8,7 @@
 __pycache__
 *.pyc
 
+# migrations #
+migrations
+
 # database #
