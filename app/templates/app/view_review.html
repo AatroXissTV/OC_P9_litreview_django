@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
     <h2>{{ review.title }}</h2>
-    <p><a href="{% url 'edit_review' review.id %}"></a>Edit Review</p>
+    <a href="{% url 'edit_review' review.id %}">
+        <h4>Edit Review</h4>
+    </a>
     <img src="{{ review.ticket.image.url }}" alt="">
     <p>{{ review.ticket.description }}</p>
     <p>{{ review.content }}</p>

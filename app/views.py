@@ -61,20 +61,20 @@ def view_review(request, review_id):
 def edit_review(request, review_id):
     review = get_object_or_404(models.Review, id=review_id)
     edit_review = forms.ReviewForm(instance=review)
-    delete_form = forms.DeleteReviewForm()
+    delete_review = forms.DeleteReviewForm()
     if request.method == 'POST':
-        if 'edit_blog' in request.POST:
+        if 'edit_review' in request.POST:
             edit_review = forms.ReviewForm(request.POST, instance=review)
             if edit_review.is_valid():
                 edit_review.save()
                 return redirect('home')
             if 'delete_review' in request.POST:
-                delete_form = forms.DeleteReviewForm(request.POST)
-                if delete_form.is_valid():
+                delete_review = forms.DeleteReviewForm(request.POST)
+                if delete_review.is_valid():
                     review.delete()
                     return redirect('home')
     context = {
         'edit_review': edit_review,
-        'delete_form': delete_form,
+        'delete_review': delete_review,
     }
     return render(request, 'app/edit_review.html', context=context)
