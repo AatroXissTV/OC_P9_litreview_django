@@ -1,8 +1,5 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
-
-from authentication.models import User
-
 from . import forms
 from . import models
 
@@ -83,31 +80,11 @@ def edit_review(request, review_id):
 
 
 @login_required
-def subscription(request):
-    subscription_form = forms.SubscriptionForm()
-    follow_form = forms.FollowForm()
+def follow_users(request):
+    form = forms.FollowUsersForm(instance=request.user)
     if request.method == 'POST':
-        subscription_form = forms.SubscriptionForm(request.POST)
-        if subscription_form.is_valid():
-            if not subscription_form.existing(userconnected=request.user):
-                following = User.objects.get(
-                    username=subscription_form.cleaned_data['following'])
-                follow_form = forms.FollowForm()
-                obj = follow_form.save(commit=False)
-                obj.user = request.user
-                obj.followed_user = following
-                obj.save()
-            else:
-                pass
-        else:
-            subscription_form = forms.SubscriptionForm()
-            subs = [user_sub for user_sub in models.UserFollows.objects.filter(
-                user=request.user)]
-            fwer = [follower for follower in models.UserFollows.objects.filter(
-                followed_user=request.user)]
-    return render(
-        request,
-        'app/subscription.html',
-        context={'subscription_form': subscription_form,
-                 'subs': subs,
-                 'followers': fwer})
+        form = forms.FollowUsersForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    return render(request, 'app/follow_users.html', context={'form': form})

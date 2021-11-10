@@ -37,7 +37,7 @@ urlpatterns = [
     path('home/<int:review_id>', app.views.view_review, name='view_review'),
     path('home/<int:review_id>/edit', app.views.edit_review,
          name='edit_review'),
-    path('home/subscription', app.views.subscription, name='subscription'),
+    path('home/follow_users', app.views.follow_users, name='follow_users'),
     path('home/', app.views.home, name='home'),
 ]
 

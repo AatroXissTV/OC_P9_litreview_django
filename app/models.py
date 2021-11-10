@@ -12,13 +12,11 @@ class Ticket(models.Model):
     image = models.ImageField(null=True, blank=True)
     time_created = models.DateTimeField(auto_now_add=True)
 
-    IMAGE_MAX_SIZE = (150, 225)
+    IMAGE_MAX_SIZE = (300, 449)
 
     def resize_image(self):
         image = Image.open(self.image)
         image.thumbnail(self.IMAGE_MAX_SIZE)
-        # save the image
-        # this is not the save() method of django models
         image.save(self.image.path)
 
     def save(self, *args, **kwargs):
