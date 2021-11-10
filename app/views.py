@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import get_user_model
 from . import forms
 from . import models
 
@@ -79,12 +80,50 @@ def edit_review(request, review_id):
     return render(request, 'app/edit_review.html', context=context)
 
 
+User = get_user_model()
+
+
 @login_required
-def follow_users(request):
-    form = forms.FollowUsersForm(instance=request.user)
+def sub(request):
+
+    follows = []
+    followed_by = []
+    follows_list = []
+
+    if models.UserFollows.objects.filter(user=request.user):
+        for entry in models.UserFollows.objects.filter(user=request.user):
+            follows.append(entry.followed_user)
+    if models.UserFollows.objects.filter(followed_user=request.user):
+        for entry in models.UserFollows.objects.filter(
+            followed_user=request.user
+        ):
+            followed_by.append(entry.user)
+    follows_list = [user for user in User.objects.all()
+                    if user not in follows and user != request.user]
+
+    if request.method == 'GET':
+        context = {
+            'follows_list': follows_list,
+            'follows': follows,
+            'followed_by': followed_by,
+        }
+        return render(request, 'app/sub.html', context=context)
+
     if request.method == 'POST':
-        form = forms.FollowUsersForm(request.POST, instance=request.user)
-        if form.is_valid():
-            form.save()
-            return redirect('home')
-    return render(request, 'app/follow_users.html', context={'form': form})
+        if request.POST.get('followed_user'):
+            new_followed_user = User.objects.get(
+                pk=request.POST.get['followed_user']
+            )
+            new_user = request.user
+            new_entry = models.UserFollows(
+                user=new_user, followed_user=new_followed_user
+            )
+            new_entry.save()
+        elif request.POST.get('delete'):
+            models.UserFollows.objects.get(
+                user=request.user,
+                followed_user=User.objects.get(
+                    id=request.POST.get['delete']
+                ),
+            ).delete()
+        return redirect('sub')

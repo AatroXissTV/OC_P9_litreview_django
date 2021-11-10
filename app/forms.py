@@ -1,5 +1,4 @@
 from django import forms
-from django.contrib.auth import get_user_model
 from . import models
 
 
@@ -22,10 +21,9 @@ class DeleteReviewForm(forms.Form):
                                        initial=True)
 
 
-User = get_user_model()
-
-
-class FollowUsersForm(forms.ModelForm):
+class UserFollowsForm(forms.ModelForm):
     class Meta:
-        model = User
-        fields = ['follows']
+        model = models.UserFollows
+        fields = [
+            'followed_user'
+        ]
