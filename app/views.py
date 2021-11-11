@@ -86,9 +86,9 @@ User = get_user_model()
 @login_required
 def sub(request):
 
+    users = []
     follows = []
     followed_by = []
-    follows_list = []
 
     if models.UserFollows.objects.filter(user=request.user):
         for entry in models.UserFollows.objects.filter(user=request.user):
@@ -98,32 +98,30 @@ def sub(request):
             followed_user=request.user
         ):
             followed_by.append(entry.user)
-    follows_list = [user for user in User.objects.all()
-                    if user not in follows and user != request.user]
+    users = [user for user in User.objects.all()
+             if user not in follows and user != request.user]
 
     if request.method == 'GET':
         context = {
-            'follows_list': follows_list,
+            'users': users,
             'follows': follows,
             'followed_by': followed_by,
         }
         return render(request, 'app/sub.html', context=context)
 
     if request.method == 'POST':
-        if request.POST.get('followed_user'):
-            new_followed_user = User.objects.get(
-                pk=request.POST.get['followed_user']
-            )
-            new_user = request.user
-            new_entry = models.UserFollows(
-                user=new_user, followed_user=new_followed_user
-            )
-            new_entry.save()
-        elif request.POST.get('delete'):
-            models.UserFollows.objects.get(
+        if request.POST.get('follow'):
+            follow = models.UserFollows(
                 user=request.user,
-                followed_user=User.objects.get(
-                    id=request.POST.get['delete']
-                ),
-            ).delete()
+                followed_user=User.objects.get(id=request.POST.get('follow'))
+            )
+            follow.save()
+            return redirect('sub')
+
+    elif request.POST.get('unfollow'):
+        unfollow = models.UserFollows.objects.filter(
+            user=request.user,
+            followed_user=User.objects.get(id=request.POST.get('unfollow'))
+        )
+        unfollow.delete()
         return redirect('sub')
