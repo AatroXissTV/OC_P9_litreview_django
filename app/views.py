@@ -118,7 +118,7 @@ def sub(request):
             follow.save()
             return redirect('sub')
 
-    elif request.POST.get('unfollow'):
+    if request.POST.get('unfollow'):
         unfollow = models.UserFollows.objects.filter(
             user=request.user,
             followed_user=User.objects.get(id=request.POST.get('unfollow'))
