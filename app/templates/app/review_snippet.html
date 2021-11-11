@@ -1,0 +1,6 @@
+<div class="review">
+    <a href="{% url 'view_review' review.id %}">
+        <h4>Review: {{ review.title }}</h4>
+        <img src="{{ review.ticket.image.url }}" alt="">
+    </a>
+</div>

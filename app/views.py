@@ -1,6 +1,8 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
+from django.db.models import CharField, Value
+from itertools import chain
 from . import forms
 from . import models
 
@@ -12,6 +14,24 @@ def home(request):
     return render(request, 'app/home.html', context={'tickets': tickets,
                                                      'reviews': reviews})
 
+
+@login_required
+def feed(request):
+    reviews = get_users_viewable_reviews(request.user)
+    # return queryset of reviews
+    reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
+
+    tickets = get_users_viewable_tickets(request.user)
+    # return queryset of tickets
+    tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
+
+    # Combine and sort the two types of posts
+    posts = sorted(
+        chain(reviews, tickets),
+        key=lambda x: x.created_at,
+        reverse=True
+    )
+    return render(request, 'app/feed.html', context={'posts': posts})   
 
 @login_required
 def create_ticket(request):
@@ -52,12 +72,6 @@ def create_review(request):
 
 
 @login_required
-def view_review(request, review_id):
-    review = get_object_or_404(models.Review, id=review_id)
-    return render(request, 'app/view_review.html', context={'review': review})
-
-
-@login_required
 def edit_review(request, review_id):
     review = get_object_or_404(models.Review, id=review_id)
     edit_review = forms.ReviewForm(instance=review)
@@ -78,6 +92,12 @@ def edit_review(request, review_id):
         'delete_review': delete_review,
     }
     return render(request, 'app/edit_review.html', context=context)
+
+
+@login_required
+def view_review(request, review_id):
+    review = get_object_or_404(models.Review, id=review_id)
+    return render(request, 'app/view_review.html', context={'review': review})
 
 
 User = get_user_model()
