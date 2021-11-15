@@ -1,0 +1,7 @@
+{% block content %}
+<p>{{ post.user }} asked for a review</p>
+<p>{{ post.time_created }}</p>
+<img src="{{ post.image.url }}" alt="">
+<h3>{{ post.title }}</h3>
+<p>{{ post.description }}</p>
+{% endblock %}

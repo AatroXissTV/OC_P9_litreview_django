@@ -1,10 +1,12 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
-from django.db.models import CharField, Value
+from django.db.models import Value, CharField
 from itertools import chain
 from . import forms
 from . import models
+from .getfeed import get_reviews_for_feed, get_tickets_for_feed
+from .getfeed import check_tickets_reply
 
 
 @login_required
@@ -17,21 +19,36 @@ def home(request):
 
 @login_required
 def feed(request):
-    reviews = get_users_viewable_reviews(request.user)
-    # return queryset of reviews
+
+    # Get Reviews
+    reviews = get_reviews_for_feed(request.user)
     reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
 
-    tickets = get_users_viewable_tickets(request.user)
-    # return queryset of tickets
+    # Get Tickets
+    tickets = get_tickets_for_feed(request.user)
     tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
 
-    # Combine and sort the two types of posts
     posts = sorted(
         chain(reviews, tickets),
-        key=lambda x: x.created_at,
+        key=lambda x: x.time_created,
         reverse=True
     )
-    return render(request, 'app/feed.html', context={'posts': posts})   
+
+    tlfr = []
+    for review in reviews:
+        tlfr.append(review.ticket)
+
+    ticket_list_for_review = models.Ticket.objects.filter(id__in=tlfr)
+
+    context = {
+        'posts': posts,
+        'ticket_list_for_review': ticket_list_for_review,
+        'users': User.objects.all(),
+        'ticket_id_reply': check_tickets_reply(request.user.id, tickets),
+    }
+
+    return render(request, 'app/feed.html', context=context)
+
 
 @login_required
 def create_ticket(request):

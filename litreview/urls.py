@@ -38,6 +38,7 @@ urlpatterns = [
     path('home/<int:review_id>/edit', app.views.edit_review,
          name='edit_review'),
     path('home/subsriptions', app.views.sub, name='sub'),
+    path('feed', app.views.feed, name='feed'),
     path('home/', app.views.home, name='home'),
 ]
 

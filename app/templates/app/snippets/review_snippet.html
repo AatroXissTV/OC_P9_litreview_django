@@ -1,0 +1,8 @@
+{% block content %}
+<div class="review">
+    <a href="{% url 'view_review' post.id %}">
+        <h4>Review: {{ post.title }}</h4>
+        <img src="{{ post.ticket.image.url }}" alt="">
+    </a>
+</div>
+{% endblock %}

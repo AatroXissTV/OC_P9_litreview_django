@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+
 {% block content %}
     <p><a href="{% url 'home' %}">Home</a></p>
     <p><a href="{% url 'create_ticket' %}">Create Ticket</a></p>
@@ -6,10 +7,17 @@
     <p><a href="{% url 'sub' %}">Subscription</a></p>
     <p>You are connected</p>
     <h2>Feed</h2>
-    {% for post in posts %}
+    <div class="grid-container">
+        {% for post in posts %}
         {% if post.content_type == 'TICKET' %}
-            {% include 'ticket_snippet.html' %}
+            {% include './snippets/ticket_snippet.html' %}
         {% elif post.content_type == 'REVIEW' %}
-            {% include 'review_snippet.html' %}
+            {% include './snippets/review_snippet.html' %}
+        {% endif %}
+
+        {% empty %}
+        <p>No posts yet</p>
     {% endfor %}
+    </div>
+
 {% endblock content %}
