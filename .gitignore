@@ -11,4 +11,7 @@ __pycache__
 # migrations #
 migrations
 
+# flake8 #
+flake-report
+
 # database #

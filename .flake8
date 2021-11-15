@@ -1,0 +1,10 @@
+[flake8]
+exclude = 
+    .git,
+    .gitignore,
+    .env,
+    .venv,
+    authentication/migrations,
+    app/migrations,
+max-line-length = 79
+max-complexity = 10
