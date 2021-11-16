@@ -1,0 +1,13 @@
+
+Séparer le sub du unfollow
+Séparer les actions affichage et de sauvegarde des utilsateurs(subs)
+barre de recherche pour le follow des utilsateurs
+la page feed à terminer
+Permette la réponse à un ticket. 
+
+# return objects that contains 'lennon'
+Entry.objects.filter(headline__contains='Lennon')
+
+
+LOGIN_REDIRECT_URL à modifier dans settings.py
+redirect à modifier dans views.py (authentication) avec le code suivant : 'feed'
