@@ -14,7 +14,9 @@ from .getfeed import check_tickets_reply
 from itertools import chain
 
 """ All views for the app are behind decorator @login_required """
-User = get_user_model
+
+# get the user model
+User = get_user_model()
 
 
 @login_required

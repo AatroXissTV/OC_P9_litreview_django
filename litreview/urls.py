@@ -39,7 +39,6 @@ urlpatterns = [
          name='edit_review'),
     path('home/subsriptions', app.views.sub, name='sub'),
     path('feed', app.views.feed, name='feed'),
-    path('home/', app.views.home, name='home'),
 ]
 
 if settings.DEBUG:
