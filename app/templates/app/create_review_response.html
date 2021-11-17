@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+    {% include './snippets/ticket_snippet_for_review.html' %}
+
+    <article class="review">
+        <h2>Critique réponse</h2>
+        <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+            {{ form_review.as_p }}
+            <button type="submit">Envoyer</button>
+        </form>
+    </article>
+    
+{%endblock%}

@@ -4,4 +4,7 @@
 <img src="{{ post.image.url }}" alt="">
 <h3>{{ post.title }}</h3>
 <p>{{ post.description }}</p>
+<a href="{% url 'create_review_response' post.id %}">
+    <h4>Answer ticket</h4>
+</a>
 {% endblock %}

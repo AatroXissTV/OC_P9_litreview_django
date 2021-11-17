@@ -1,0 +1,22 @@
+{% block content %}
+    <article class="ticket">
+
+        {% for user in users %}
+            {% if user.id == ticket.user_id %}
+                <p class="user">Demande - {{ user }}</p>
+            {% endif %}
+        {% endfor %}
+        <p class="date">{{ ticket.time_created }} </p>
+
+
+        <div class="ticket-content">
+            <div class="ticket-text">
+                <h3 class="title"> {{ ticket.title }} </h3>
+                <p class="body"> {{ ticket.description }}</p>
+
+            </div>
+            <img src="{{ ticket.image.url }}">
+        </div>
+    </article>
+
+{% endblock %}

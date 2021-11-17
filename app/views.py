@@ -36,7 +36,7 @@ def feed(request):
         reverse=True)
     tlfr = []
     for review in reviews:
-        tlfr.append(review.ticket)
+        tlfr.append(review.ticket.id)
     ticket_list_for_review = Ticket.objects.filter(id__in=tlfr)
 
     # Initialize context
@@ -90,6 +90,35 @@ def create_review(request):
         'review_form': review_form,
     }
     return render(request, 'app/create_review.html', context=context)
+
+
+@login_required
+def create_review_response(request, ticket_id):
+    ticket_obj = get_object_or_404(Ticket, id=ticket_id)
+    review_form = ReviewForm()
+    if request.method == 'POST':
+        ticket_form = TicketForm(request.POST,
+                                 request.FILES,
+                                 instance=ticket_obj)
+        review_form = ReviewForm(request.POST)
+        if ticket_form.is_valid() and review_form.is_valid():
+            Review.objects.create(
+                headline=request.POST['headline'],
+                body=request.POST['body'],
+                user=request.user,
+                ticket=ticket_obj,
+                rating=request.POST['rating']
+            )
+            return redirect('feed')
+
+    # Initialize context
+    context = {
+        'review_form': review_form,
+        'infos_ticket': ticket_obj,
+        'ticket': Ticket.objects.get(id=ticket_id),
+    }
+
+    return render(request, 'app/create_review_response.html', context=context)
 
 
 @login_required

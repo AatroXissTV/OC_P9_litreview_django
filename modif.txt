@@ -3,6 +3,7 @@ Séparer le sub du unfollow
 Séparer les actions affichage et de sauvegarde des utilsateurs(subs)
 barre de recherche pour le follow des utilsateurs
 la page feed à terminer
+
 Permettre la réponse à un ticket. 
 
 # return objects that contains 'lennon'
