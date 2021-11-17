@@ -97,11 +97,8 @@ def create_review_response(request, ticket_id):
     ticket_obj = get_object_or_404(Ticket, id=ticket_id)
     review_form = ReviewForm()
     if request.method == 'POST':
-        ticket_form = TicketForm(request.POST,
-                                 request.FILES,
-                                 instance=ticket_obj)
         review_form = ReviewForm(request.POST)
-        if ticket_form.is_valid() and review_form.is_valid():
+        if review_form.is_valid():
             Review.objects.create(
                 headline=request.POST['headline'],
                 body=request.POST['body'],
