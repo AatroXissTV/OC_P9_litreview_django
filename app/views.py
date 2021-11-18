@@ -156,44 +156,69 @@ def view_review(request, review_id):
 
 
 @login_required
-def sub(request):
+def display_follow(request):
+    """Display follows subscription & followers to the user"""
 
-    users = []
+    # Initialize lists
     follows = []
-    followed_by = []
-
+    followers = []
+    # Get follows
     if UserFollows.objects.filter(user=request.user):
         for entry in UserFollows.objects.filter(user=request.user):
             follows.append(entry.followed_user)
+    # Get followers
     if UserFollows.objects.filter(followed_user=request.user):
-        for entry in UserFollows.objects.filter(
-            followed_user=request.user
-        ):
-            followed_by.append(entry.user)
-    users = [user for user in User.objects.all()
-             if user not in follows and user != request.user]
+        for entry in UserFollows.objects.filter(followed_user=request.user):
+            followers.append(entry.user)
 
+    # Display follows & followers
     if request.method == 'GET':
         context = {
-            'users': users,
             'follows': follows,
-            'followed_by': followed_by,
+            'followers': followers,
         }
-        return render(request, 'app/sub.html', context=context)
 
-    if request.method == 'POST':
+    elif request.method == 'POST':
         if request.POST.get('follow'):
-            follow = UserFollows(
-                user=request.user,
-                followed_user=User.objects.get(id=request.POST.get('follow'))
-            )
-            follow.save()
-            return redirect('sub')
 
-    if request.POST.get('unfollow'):
-        unfollow = UserFollows.objects.filter(
-            user=request.user,
-            followed_user=User.objects.get(id=request.POST.get('unfollow'))
-        )
-        unfollow.delete()
-        return redirect('sub')
+            # Initialize Context
+            context = {
+                'follows': follows,
+                'followers': followers,
+            }
+            # calling follow method
+            follow(request)
+
+        elif request.POST.get('unfollow'):
+            context = {
+                'follows': follows,
+                'followers': followers,
+            }
+            test = unfollow(request)
+            print(test)
+    return render(request, 'app/follow.html', context=context)
+
+
+@login_required
+def follow(request):
+    """ follow a user """
+    searched = request.POST['follow']
+    try:
+        user = User.objects.get(username=searched)
+        new_follow = UserFollows(user=request.user, followed_user=user)
+        new_follow.save()
+        return redirect('follow')
+    except User.DoesNotExist:
+        return redirect('follow')
+
+
+@login_required
+def unfollow(request):
+    """ Unfollow a user """
+
+    unfollow = UserFollows.objects.filter(
+        user=request.user,
+        followed_user=User.objects.get(id=request.POST.get('unfollow'))
+    )
+    unfollow.delete()
+    return redirect('follow')

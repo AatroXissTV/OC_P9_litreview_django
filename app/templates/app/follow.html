@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h3>Follow other users</h3>
+    <form method="post">
+        {% csrf_token %}
+        <input type="search" name="follow">
+    </form>
+
+    <h3>Follows</h3>
+    {% if follows %}
+        {% for follows_user in follows %}
+        <li>{{ follows_user.username }}</li>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" name="unfollow" value="{{ follows_user.id }}">Unfollow</button>
+        </form>
+        {% endfor %}
+    {% else %}
+        <p>You are not following anyone.</p>
+    {% endif %}
+
+    <h3>Your followers list</h3>
+    {% if followers %}
+        {% for followed_by_user in followers %}
+        <li>{{ followed_by_user.username }}</li>
+        {% endfor %}
+    {% else %}
+        <p>You are not followed by anyone.</p>
+    {% endif %}
+{% endblock content %}
