@@ -180,22 +180,20 @@ def display_follow(request):
 
     elif request.method == 'POST':
         if request.POST.get('follow'):
-
-            # Initialize Context
             context = {
                 'follows': follows,
                 'followers': followers,
             }
-            # calling follow method
             follow(request)
+            return redirect('follow')
 
         elif request.POST.get('unfollow'):
             context = {
                 'follows': follows,
                 'followers': followers,
             }
-            test = unfollow(request)
-            print(test)
+            unfollow(request)
+            return redirect('follow')
     return render(request, 'app/follow.html', context=context)
 
 
@@ -207,9 +205,8 @@ def follow(request):
         user = User.objects.get(username=searched)
         new_follow = UserFollows(user=request.user, followed_user=user)
         new_follow.save()
-        return redirect('follow')
     except User.DoesNotExist:
-        return redirect('follow')
+        print('User does not exist')
 
 
 @login_required
@@ -221,4 +218,3 @@ def unfollow(request):
         followed_user=User.objects.get(id=request.POST.get('unfollow'))
     )
     unfollow.delete()
-    return redirect('follow')

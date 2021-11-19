@@ -40,7 +40,6 @@ urlpatterns = [
     path('<int:review_id>', app.views.view_review, name='view_review'),
     path('<int:review_id>/edit', app.views.edit_review,
          name='edit_review'),
-    # path('subsriptions', app.views.sub, name='sub'),
     path('follow', app.views.display_follow, name='follow'),
     path('feed', app.views.feed, name='feed'),
 ]
