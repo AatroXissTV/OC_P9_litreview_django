@@ -42,7 +42,7 @@ urlpatterns = [
          name='edit_review'),
     path('follow', app.views.display_follow, name='follow'),
     path('feed', app.views.feed, name='feed'),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
