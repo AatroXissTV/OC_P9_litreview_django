@@ -1,12 +1,32 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h2>Register</h2>
-    {% if form.errors %}
-        {{ form.errors }}
-    {% endif %}
-    <form method="post">
-        {{ form.as_p }}
-        {% csrf_token %}
-        <button type="submit" >Signup</button>
-    </form>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <h1>The #1 website to find a book review</h1>
+                <ul>
+                    <li>follow your frinds and see their review</li>
+                    <li>Give advice to your friends</li>
+                    <li>Ask for an advice</li>
+                </ul>
+            </div>
+            <div class="col-sm">
+                {% if form.errors %}
+                    <div class="alert alert-danger">
+                        <ul>
+                            {% for error in form.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+                <form method="post">
+                    {{ form.as_p}}
+                    {% csrf_token %}
+                    <button type="submit">Sign up</button>
+                </form>
+                <p>You've got an account <a href="{% url 'login' %}">login !</a></p>
+            </div>
+        </div>
+    </div>
 {% endblock content %}

@@ -1,9 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
-    <form method="post">
-        {{ form.as_p }}
-        {% csrf_token %}
-        <button type="submit" >Connect</button>
-    </form>
-    <p>Pas encore membre ? <a href="{% url 'signup' %}">Sign up now!</a></p>
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <h1>The #1 website to find a book review</h1>
+            <ul>
+                <li>follow your frinds and see their review</li>
+                <li>Give advice to your friends</li>
+                <li>Ask for an advice</li>
+            </ul>
+        </div>
+        <div class="col-sm">
+            <form method="post">
+                {{ form.as_p}}
+                {% csrf_token %}
+                <button type="submit">Connect</button>
+            </form>
+            <p>No account? <a href="{% url 'signup' %}">Sign up now!</a></p>
+        </div>
+    </div>
+</div>
 {% endblock content %}
