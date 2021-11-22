@@ -1,23 +1,27 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <p><a href="{% url 'feed' %}">Home</a></p>
-    <p><a href="{% url 'create_ticket' %}">Create Ticket</a></p>
-    <p><a href="{% url 'create_review' %}">Create Review</a></p>
-    <p><a href="{% url 'follow' %}">Subscription</a></p>
-    <p>You are connected</p>
-    <h2>Feed</h2>
-    <div class="grid-container">
-        {% for post in feed %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <a href="{% url 'create_ticket' %}" class="btn btn-primary">Ask for a review</a>
+        </div>
+        <div class="col-sm">
+            <a href="{% url 'create_review' %}" class="btn btn-primary">Create a review</a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    {% for post in feed %}
         {% if post.content_type == 'TICKET' %}
             {% include './snippets/ticket_snippet.html' %}
         {% elif post.content_type == 'REVIEW' %}
             {% include './snippets/review_snippet.html' %}
         {% endif %}
-
-        {% empty %}
-        <p>No posts yet</p>
+    {% empty %}
+    <p>No posts yet</p>
     {% endfor %}
-    </div>
 
+</div>
 {% endblock content %}
