@@ -7,6 +7,7 @@
 /* import css files in master.css */
 @import url(navbar.css);
 @import url(layout.css);
+@import url(review.css);
 
 /* variable css for colors & fonts */
 :root {
@@ -39,10 +40,6 @@
 
 body {
     background: var(--dominant-color);
-}
-
-label {
-    /* display: none; */
 }
 
 input {

@@ -32,3 +32,16 @@
 .hp-signup {
     font-size: 12px;
 }
+
+/* css for feed container */
+.btn-feed-container {
+    margin-top: 200px;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.feed-container {
+    margin-top: 50px;
+    padding-left: 100px;
+    padding-right: 100px; 
+}
