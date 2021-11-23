@@ -1,0 +1,24 @@
+/* ============  Navbar  ================ */
+/* css for navbar */
+
+.nav-main {
+    background-color: var(--dominant-color);
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    width: 100%;
+    height: 80px;
+    padding: 0 4%;
+    align-items: center;
+}
+
+.nav-logo {
+    color: var(--complementary-color) !important;
+    font-size: 2em;
+    font-family: var(--title-font);
+}
+
+.nav-link {
+    color: var(--complementary-color) !important;
+}

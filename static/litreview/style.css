@@ -1,3 +1,88 @@
+/* Main CSS file for LITReview */
+
+/* import Google fonts */
+@import url(https://fonts.googleapis.com/css?family=libre+caslon+text);
+@import url(https://fonts.googleapis.com/css?family=montserrat);
+
+/* import css files in master.css */
+@import url(navbar.css);
+@import url(layout.css);
+
+/* variable css for colors & fonts */
+:root {
+  
+    /* colors (3 colors: 1 dominant(60%), 1 complementary (30%), 2 accent (5%) */
+    --dominant-color: #F0E9E0;
+    --complementary-color: #2C1810;
+    --accent-color: #64866E;
+    --accent-color-2: #DAAA63;
+
+    /* color support */
+    --white-color: #fff;
+    --black-color: #000;
+
+    /* font & typos */
+    --title-font: 'libre caslon text', serif;
+    --body-font: 'montserrat', sans-serif;
+    --title-font-size: 4.5rem;
+    --medium-font-size: 2.5rem;
+    --small-medium-font-size: 1.5rem;
+    --body-font-size: 1rem;
+}
+
+/* css style reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    background-color: red;
+    background: var(--dominant-color);
+}
+
+h1 {
+    font-family: var(--title-font);
+    font-size: var(--title-font-size);
+    color: var(--complementary-color);
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    font-family: var(--body-font);
+    font-size: var(--small-medium-font-size);
+    color: var(--complementary-color);
+    margin: 0;
+    padding: 0;
+    margin-bottom: 10px !important;
+}
+
+h5 {
+    font-family: var(--title-font);
+    font-size: var(--medium-font-size);
+    color: var(--complementary-color);
+    margin-bottom: 30px !important;
+    text-align: center;
+    margin: 0;
+}
+
+p {
+    font-family: var(--body-font);
+    font-size: var(--body-font-size);
+    color: var(--complementary-color);
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    font-family: var(--body-font);
+    text-decoration: none;
+    color: var(--complementary-color);
+}
+
+li {
+    list-style: none;
+    font-family: var(--body-font);
+    color: var(--complementary-color);
 }

@@ -1,0 +1,29 @@
+/* ============  Layout  ================ */
+/* css for hp container */
+
+.hp-container {
+    margin-top: 200px;
+}
+
+.values-container {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 0%;
+}
+
+.btn-hp {
+    background-color: var(--accent-color-2);
+    border: var(--dominant-color);
+    color: var(--dominant-color);
+    padding: 8px 18px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 8px;
+}
+
+.hp-signup {
+    text-align: center;
+    font-size: 12px;
+}

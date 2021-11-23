@@ -1,22 +1,29 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container">
-    <div class="row">
+<div class="container hp-container">
+    <div class="row align-items-center">
         <div class="col-sm">
-            <h1>The #1 website to find a book review</h1>
-            <ul>
-                <li>follow your frinds and see their review</li>
-                <li>Give advice to your friends</li>
-                <li>Ask for an advice</li>
-            </ul>
+            <div class="p-3">
+                <h1>The #1 website to find a book review</h1>
+                <div class="container values-container">
+                    <h2>follow your frinds and see their review</h2>
+                    <h2>Give advice to your friends</h2>
+                    <h2>Ask for an advice</h2>
+                </div>
+            </div>
         </div>
         <div class="col-sm">
-            <form method="post">
-                {{ form.as_p}}
-                {% csrf_token %}
-                <button type="submit">Connect</button>
-            </form>
-            <p>No account? <a href="{% url 'signup' %}">Sign up now!</a></p>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Login</h5>
+                    <form method="post">
+                        {{ form.as_p}}
+                        {% csrf_token %}
+                        <button type="submit" class="btn-hp">Connect</button>
+                    </form>
+                    <p class="hp-signup">No account? Click <a href="{% url 'signup' %}"> here </a>to sign up now!</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
