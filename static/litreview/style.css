@@ -41,6 +41,17 @@ body {
     background: var(--dominant-color);
 }
 
+label {
+    /* display: none; */
+}
+
+input {
+    width: 100%;
+    border-radius: 5px;
+    border-color: var(--complementary-color);
+    border-width: 1px;
+}
+
 h1 {
     font-family: var(--title-font);
     font-size: var(--title-font-size);
@@ -65,6 +76,17 @@ h5 {
     margin-bottom: 30px !important;
     text-align: center;
     margin: 0;
+}
+
+h6 {
+    font-family: var(--body-font);
+    font-size: var(--body-font-size);
+    color: var(--complementary-color);
+    margin: 0;
+    padding: 0;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+    text-align: left !important;
 }
 
 p {

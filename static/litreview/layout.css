@@ -1,5 +1,5 @@
 /* ============  Layout  ================ */
-/* css for hp container */
+/* css for Login/Signup container */
 
 .hp-container {
     margin-top: 200px;
@@ -13,17 +13,22 @@
 
 .btn-hp {
     background-color: var(--accent-color-2);
-    border: var(--dominant-color);
-    color: var(--dominant-color);
+    border-color: var(--complementary-color);
+    color: var(--complementary-color);
+    font-family: var(--body-font);
+    text-transform: uppercase;
+    font-weight: 500;
+    border-width: 1px;
+    font-size: var(--medium-font-size);
     padding: 8px 18px;
-    text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    border-radius: 8px;
+    border-radius: 10px;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 .hp-signup {
-    text-align: center;
     font-size: 12px;
 }

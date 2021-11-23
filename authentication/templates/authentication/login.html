@@ -13,13 +13,18 @@
             </div>
         </div>
         <div class="col-sm">
-            <div class="card">
+            <div class="card text-center">
                 <div class="card-body">
                     <h5 class="card-title">Login</h5>
                     <form method="post">
-                        {{ form.as_p}}
-                        {% csrf_token %}
-                        <button type="submit" class="btn-hp">Connect</button>
+                        <div class="container">
+                            <h6>User name</h6>
+                            {{ form.username }}
+                            <h6>Password</h6>
+                            {{ form.password }}
+                            {% csrf_token %}
+                        </div>
+                        <button type="submit" class="btn-hp">login</button>
                     </form>
                     <p class="hp-signup">No account? Click <a href="{% url 'signup' %}"> here </a>to sign up now!</p>
                 </div>
