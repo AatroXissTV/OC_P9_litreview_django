@@ -3,7 +3,7 @@
     <div class="card-body">
         <p class="card-text">{{ request.user }} published a review</p>
         <p class="card-text">{{ post.time_created }}</p>
-        <h5 class="card-title">{{ post.headline }}</h5>
+        <h5 class="card-title"><a href="{% url 'view_review' post.id %}">{{ post.headline }}</a></h5>
         <p class="card-text">{{ post.rating }}</p>
         <p class="card-text">{{ post.description }}</p>
         <div class="card">
