@@ -45,3 +45,32 @@
     padding-left: 100px;
     padding-right: 100px; 
 }
+
+
+/*  css for feed cards */
+.card-margin {
+    margin-bottom: 50px !important;
+}
+
+.row-margin {
+    margin-bottom: 20px !important;
+}
+
+.card-align {
+    text-align: right;
+}
+
+.btn-ticket {
+    background-color: var(--accent-color);
+    border-color: var(--complementary-color);
+    color: var(--complementary-color);
+    font-family: var(--body-font);
+    text-transform: uppercase;
+    font-weight: 500;
+    border-width: 1px;
+    font-size: var(--medium-font-size);
+    padding: 8px 18px;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 10px;
+}

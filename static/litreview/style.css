@@ -26,6 +26,7 @@
     --title-font: 'libre caslon text', serif;
     --body-font: 'montserrat', sans-serif;
     --title-font-size: 4.5rem;
+    --large-font-size: 3rem;
     --medium-font-size: 2.5rem;
     --small-medium-font-size: 1.5rem;
     --body-font-size: 1rem;
@@ -64,6 +65,12 @@ h2 {
     margin: 0;
     padding: 0;
     margin-bottom: 10px !important;
+}
+
+h3 {
+    font-family: var(--body-font);
+    font-size: var(--small-medium-font-size);
+    text-align: left;
 }
 
 h5 {
