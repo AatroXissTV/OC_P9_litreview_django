@@ -23,7 +23,7 @@
                             <div class="col-8">
                                 <p class="card-text">{{ follows_user.username }}</p>
                             </div>
-                            <div class="col-4">
+                            <div class="col-4 card-align">
                                 <form method="post">
                                     {% csrf_token %}
                                     <button type="submit" name="unfollow" value="{{ follows_user.id }}">Unfollow</button>

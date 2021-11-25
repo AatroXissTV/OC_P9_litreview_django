@@ -2,27 +2,57 @@
 {% block content %}
 <div class="container btn-feed-container">
     <div class="row">
-        <a href="{% url 'edit_review' review.id %}">
-            <h3>Edit Review</h3>
-        </a>
+        <h3>Review Details</h3>
     </div>
 </div>
 <div class="container feed-container">
     <div class="card card-margin">
         <div class="card-body">
-            <div class="row">
-                <h3 class="card-title">{{ review.title }}</h3>
-            </div>
-            <div class="row">
-                <div class="col-sm">
-                    <p class="card-text">{{ review.ticket.description }}</p>
-                    <p class="card-text">{{ review.content }}</p>
+            <div class="container">
+                <div class="row row-margin">
+                    <div class="col-8">
+                        <p class="card-text">{{ review.user }} published a review</p>
+                    </div>
+                    <div class="col-4">
+                        <p class="card-text card-align">{{ review.time_created }}</p>
+                    </div>
                 </div>
-                <div class="col-sm">
-                    <img class="card-img-right" src="{{ review.ticket.image.url }}" alt="">
+                <div class="row">
+                    <div class="col-8">
+                        <h3>{{ review.headline }}</h3>
+                    </div>
+                    <div class="col-4">
+                        <p class="card-text">{{ review.rating }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <p class="card-text">{{ review.body }}</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-8">
+                            <p class="card-text">{{ review.ticket.user }}</p>
+                        </div>
+                        <div class="col-4">
+                            <p class="card-text card-align">{{ review.ticket.time_created }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <h3 class="card-title">{{ review.ticket.title }}</h3>
+                        </div>
+                        <div class="col-sm">
+                            <img class="card-img-right" src="{{ review.ticket.image.url }}" alt="">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+<div class="container feed-container">
+    <a href="{% url 'edit_review' review.id %}" class="btn btn-feed">Edit Review</a>
 </div>
 {% endblock content %}
