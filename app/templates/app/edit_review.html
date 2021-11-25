@@ -1,16 +1,28 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h2>Edit Review</h2>
-    <form method="post">
-        {{ edit_review.as_p }}
-        {% csrf_token %}
-        <button type="submit">Save</button>
-    </form>
-    <hr>
-    <h3>Delete Review</h3>
-    <form method="post">
-        {{ delete_review }}
-        {% csrf_token %}
-        <button type="submit">Delete</button>
-    </form>
+<div class="container btn-feed-container">
+    <div class="row">
+        <h2>Edit Review</h2>
+    </div>
+</div>
+<div class="container feed-container">
+    <div class="card">
+        <div class="card-body">
+            <form method="post">
+                {{ edit_review.as_p }}
+                {% csrf_token %}
+                <button type="submit">Save</button>
+            </form>
+        </div>
+        <hr>
+        <div class="card-body">
+            <h5 class="card-title">Delete Review</h5>
+            <form method="post">
+                {{ delete_review }}
+                {% csrf_token %}
+                <button type="submit">Delete</button>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock content %}

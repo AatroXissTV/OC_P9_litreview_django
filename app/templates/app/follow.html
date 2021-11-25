@@ -3,20 +3,36 @@
 <div class="container btn-feed-container">
     <div class="row">
         <h3>Follow other users</h3>
+    </div>
+    <div class="row">
         <form method="post">
             {% csrf_token %}
             <input type="search" name="follow">
         </form>
     </div>
+</div> 
+<div class="container feed-container">
     <div class="row">
         <h3>Follows</h3>
         {% if follows %}
             {% for follows_user in follows %}
-            <li>{{ follows_user.username }}</li>
-            <form method="post">
-                {% csrf_token %}
-                <button type="submit" name="unfollow" value="{{ follows_user.id }}">Unfollow</button>
-            </form>
+            <div class="card card-margin">
+                <div class="card-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-8">
+                                <p class="card-text">{{ follows_user.username }}</p>
+                            </div>
+                            <div class="col-4">
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <button type="submit" name="unfollow" value="{{ follows_user.id }}">Unfollow</button>
+                                </form>      
+                            </div>  
+                        </div>
+                    </div>       
+                </div>
+            </div>
             {% endfor %}
         {% else %}
             <p>You are not following anyone.</p>
@@ -26,10 +42,14 @@
         <h3>Your followers list</h3>
         {% if followers %}
             {% for followed_by_user in followers %}
-            <li>{{ followed_by_user.username }}</li>
+            <div class="card card-margin">
+                <div class="card-body">
+                    <p class="card-text">{{ followed_by_user.username }}</p>          
+                </div>
+            </div>
             {% endfor %}
         {% else %}
-            <p>You are not followed by anyone.</p>
+            <p>You have no followers.</p>
         {% endif %}
     </div>
 </div>
