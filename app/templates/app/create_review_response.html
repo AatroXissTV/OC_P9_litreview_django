@@ -2,15 +2,35 @@
 
 
 {% block content %}
-
+<div class="container btn-feed-container">
+    <div class="row">
+        <h3>Answer to a ticket</h3>
+    </div>
+</div>
+<div class="container feed-container">
     {% include './snippets/ticket_snippet_for_review.html' %}
-
-    <article class="review">
-        <h2>Critique réponse</h2>
-        <form method="POST" enctype="multipart/form-data">{% csrf_token %}
-            {{ review_form.as_p }}
-            <button type="submit">Envoyer</button>
-        </form>
-    </article>
-    
+</div>
+<div class="container feed-container">
+    <div class="card">
+        <div class="card-body">
+            <div class="container">
+                <div class="row row-margin">
+                    <h3 class="card-title">Please give your review below</h3>
+                </div>
+                <div class="row row-margin">
+                    <form method="POST" enctype="multipart/form-data">
+                        <h6>Rating</h6>
+                        {{ review_form.rating }}
+                        <h6>Title</h6>
+                        {{ review_form.headline }}
+                        <h6>Review</h6>
+                        {{ review_form.body }}
+                        {% csrf_token %}
+                        <button type="submit" class="btn-hp">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>  
 {%endblock%}

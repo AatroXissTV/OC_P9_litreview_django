@@ -1,22 +1,29 @@
 {% block content %}
-    <article class="ticket">
-
-        {% for user in users %}
-            {% if user.id == ticket.user_id %}
-                <p class="user">Demande - {{ user }}</p>
-            {% endif %}
-        {% endfor %}
-        <p class="date">{{ ticket.time_created }} </p>
-
-
-        <div class="ticket-content">
-            <div class="ticket-text">
-                <h3 class="title"> {{ ticket.title }} </h3>
-                <p class="body"> {{ ticket.description }}</p>
-
+<div class="card card-margin">
+    <div class="card-body">
+        <div class="container">
+            <div class="row row-margin">
+                <div class="col-8">
+                    {% for user in users %}
+                    {% if user.id == ticket.id %}
+                        <p class="card-text">This ticket was published by {{ user }}</p>
+                    {% endif %}
+                {% endfor %}
+                </div>
+                <div class="col-4">
+                    <p class="card-text">{{ ticket.time_created }}</p>
+                </div>
             </div>
-            <img src="{{ ticket.image.url }}">
+            <div class="row">
+                <div class="col-sm">
+                    <h3 class="card-text">{{ ticket.title }}</h3>
+                    <p class="card-text">{{ ticket.description }}</p>
+                </div>
+                <div class="col-sm">
+                    <img src="{{ ticket.image.url }}" alt="">
+                </div>
+            </div>
         </div>
-    </article>
-
+    </div>
+</div>
 {% endblock %}

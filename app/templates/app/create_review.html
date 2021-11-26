@@ -1,10 +1,39 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h2>Create a review</h2>
-    <form method="post" enctype="multipart/form-data">
-        {{ ticket_form.as_p }}
-        {{ review_form.as_p }}
-        {% csrf_token %}
-        <button type="submit">Save</button>
-    </form>
+<div class="container btn-feed-container">
+    <div class="row">
+        <h3>Create a review</h3>
+    </div>
+</div>
+<div class="container feed-container">
+    <div class="card card-margin">
+        <div class="card-body">
+            <div class="container">
+                <form method="post">
+                    <div class="row row-margin">
+                        <h6>Title</h6>
+                        {{ ticket_form.title }}
+                        <h6>Description</h6>
+                        {{ ticket_form.description }}
+                        <h6>Image</h6>
+                        {{ ticket_form.image }}
+                    </div>
+                    <hr>
+                    <div class="row row-margin">
+                        <h6>Rating</h6>
+                        {{ review_form.rating }}
+                        <h6>Title</h6>
+                        {{ review_form.headline }}
+                        <h6>Description</h6>
+                        {{ review_form.body }}
+                    </div>
+                    <div class="row row-margin">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-hp">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}
