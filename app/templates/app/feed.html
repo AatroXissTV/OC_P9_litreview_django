@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container btn-feed-container">
+<div class="container sub-container">
     <div class="row">
         <div class="col-sm">
             <a href="{% url 'create_ticket' %}" class="btn btn-feed">Ask for a review</a>
@@ -12,7 +12,7 @@
     </div>
 </div>
 
-<div class="container feed-container">
+<div class="container sub-container">
     {% for instance in page_obj %}
         {% if instance.content_type == 'TICKET' %}
             {% include './snippets/ticket_snippet.html' %}
@@ -24,7 +24,7 @@
     {% endfor %}
 </div>
 
-<div class="container feed-container">
+<div class="container sub-container">
     <span>
         {% if page_obj.has_previous %}
             <a href="?page=1">« première</a>

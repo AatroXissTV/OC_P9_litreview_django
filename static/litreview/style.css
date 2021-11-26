@@ -8,6 +8,7 @@
 @import url(navbar.css);
 @import url(layout.css);
 @import url(review.css);
+@import url(components.css);
 
 /* variable css for colors & fonts */
 :root {

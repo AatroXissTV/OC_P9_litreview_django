@@ -1,38 +1,80 @@
 {% block content %}
-<div class="card card-margin">
+<div class="card card-feed">
     <div class="card-body">
         <div class="container">
             <div class="row row-margin">
                 <div class="col-8">
-                    <p class="card-text">{{ request.user }} published a review</p>
+                    <p class="card-user">{{ request.user }} published a review</p>
                 </div>
                 <div class="col-4">
-                    <p class="card-text card-align">{{ instance.time_created }}</p>
+                    <p class="card-time">{{ instance.time_created }}</p>
                 </div>
             </div>
             <div class="row">
-                <div class="col-8">
-                    <h3 class="card-title"><a href="{% url 'view_review' instance.id %}">{{ instance.headline }}</a></h3>
+                <div class="col-auto mr-auto">
+                    <h2 class="card-headline">{{ instance.headline }} -</h2>
                 </div>
-                <div class="col-4">
-                    <p class="card-text">{{ instance.rating }}</p>
+                <div class="col-auto mr-auto">
+                    {% if instance.rating == 5 %}
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                    {% endif %}
+                    {% if instance.rating == 4 %}
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                    {% endif %}
+                    {% if instance.rating == 3 %}
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    {% endif %}
+                    {% if instance.rating == 2 %}
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    {% endif %}
+                    {% if instance.rating == 1 %}
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    {% endif %}
                 </div>
             </div>
             <div class="row">
-                <p class="card-text">{{ instance.description }}</p>
+                <p class="card-body">{{ instance.body }}</p>
             </div>
         </div>
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <p class="card-text">{{ instance.ticket.user }}</p>
+    </div>
+    <div class="card card-in-review">
+        <div class="card-body">
+            <div class="container">
+                <div class="row row-margin">
+                    <div class="col-8">
+                        <p class="card-user">{{ instance.ticket.user }} published this ticket</p>
+                    </div>
+                    <div class="col-4">
+                        <p class="card-time">{{ instance.ticket.time_created }}</p>
+                    </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm">
-                        <h3 class="card-title">{{ instance.ticket.title }}</h3>
+                    <div class="col-9">
+                        <h2 class="card-headline">{{ instance.ticket.title }}</h2>
+                        <p class="card-body">{{ instance.ticket.description }}</p>
                     </div>
-                    <div class="col-sm">
-                        <img class="card-img-right" src="{{ instance.ticket.image.url }}" alt="">
+                    <div class="col-3 card-cover">
+                        <img src="{{ instance.ticket.image.url }}" alt="">
                     </div>
                 </div>
             </div>

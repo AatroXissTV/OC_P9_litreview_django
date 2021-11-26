@@ -1,0 +1,88 @@
+/* ============  Buttons  ================ */
+/* feed button */
+.btn-feed {
+    border-color: var(--complementary-color);
+    border-width: 1px;
+    border-radius: 10px;
+    width: 100%;
+    padding: 8px 18px;
+
+    background-color: var(--white-color);
+
+    font-size: 16px;
+    font-family: var(--title-font);
+    font-weight: 500;
+    color: var(--complementary-color);
+    
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.btn-feed:hover {
+    background-color: var(--accent-color);
+    color: var(--white-color);
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+/* ============  Cards  ================ */
+.card-feed {
+    border-radius: 10px;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    background-color: var(--white-color);
+    padding: 10px;
+    margin-bottom: 50px;
+}
+
+.row-margin {
+    margin-bottom: 20px !important;
+}
+
+.card-user {
+    font-size: 12px;
+    font-family: var(--body-font);
+    font-weight: bold;
+    color: var(--complementary-color);
+}
+
+.card-time {
+    font-size: 12px;
+    font-family: var(--body-font);
+    font-weight: bold;
+    color: var(--complementary-color);
+    text-align: right;
+}
+
+.card-headline {
+    font-size: 25px;
+    font-family: var(--body-font);
+    font-weight: bolder;
+    color: var(--complementary-color);
+    text-align: left;
+}
+
+.card-body {
+    font-size: 12px;
+    font-family: var(--body-font);
+    color: var(--complementary-color);
+    text-align: justify;
+}
+
+.card-in-review {
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: var(--complementary-color);
+    padding: 10px;
+}
+
+.card-cover {
+    max-height: 250px;
+}
+
+/* ============  Rating  ================ */
+.fa {
+    font-size: 25px !important;
+}
+
+.checked {
+    color: #ffd60a;
+  }

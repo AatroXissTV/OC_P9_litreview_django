@@ -1,6 +1,29 @@
 /* ============  Layout  ================ */
-/* css for Login/Signup container */
 
+/* page layout  */
+.main-container {
+    margin-top: 150px;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+/* Welcome Part */
+.welcome-message {
+    font-size: 20px;
+    font-family: var(--body-font);
+    font-weight: bold;
+    color: var(--complementary-color);
+}
+/* Welcome card */
+.welcome-card {
+    font-size: 12px;
+    font-family: var(--body-font);
+    font-weight: bold;
+    text-align: center;
+    color: var(--complementary-color);
+}
+
+/* css for Login/Signup container */
 .hp-container {
     margin-top: 200px;
 }
@@ -34,58 +57,21 @@
 }
 
 /* css for feed container */
-.btn-feed-container {
-    margin-top: 200px;
-    padding-left: 100px;
-    padding-right: 100px;
-}
-
-.feed-container {
+.sub-container {
     margin-top: 50px;
-    padding-left: 100px;
-    padding-right: 100px; 
-}
-
-
-/*  css for feed cards */
-.btn-feed {
-    background-color: var(--white-color);
-    border-color: var(--complementary-color);
-    color: var(--complementary-color);
-    font-family: var(--title-font);
-    text-transform: uppercase;
-    font-weight: 500;
-    border-width: 1px;
-    font-size: var(--medium-font-size);
-    padding: 8px 18px;
-    text-decoration: none;
-    font-size: 16px;
-    border-radius: 10px; 
-}
-
-.card-margin {
-    margin-bottom: 50px !important;
-}
-
-.row-margin {
-    margin-bottom: 20px !important;
-}
-
-.card-align {
-    text-align: right;
 }
 
 .btn-ticket {
-    background-color: var(--accent-color);
     border-color: var(--complementary-color);
+    border-width: 1px;
+    border-radius: 10px;
+    background-color: var(--accent-color);
     color: var(--complementary-color);
     font-family: var(--body-font);
     text-transform: uppercase;
     font-weight: 500;
-    border-width: 1px;
     font-size: var(--medium-font-size);
     padding: 8px 18px;
     text-decoration: none;
     font-size: 16px;
-    border-radius: 10px;
 }
