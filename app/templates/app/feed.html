@@ -13,15 +13,34 @@
 </div>
 
 <div class="container feed-container">
-    {% for post in feed %}
-        {% if post.content_type == 'TICKET' %}
+    {% for instance in page_obj %}
+        {% if instance.content_type == 'TICKET' %}
             {% include './snippets/ticket_snippet.html' %}
-        {% elif post.content_type == 'REVIEW' %}
+        {% elif instance.content_type == 'REVIEW' %}
             {% include './snippets/review_snippet.html' %}
         {% endif %}
     {% empty %}
     <p>No posts yet</p>
     {% endfor %}
+</div>
+
+<div class="container feed-container">
+    <span>
+        {% if page_obj.has_previous %}
+            <a href="?page=1">« première</a>
+            <a href="?page={{ page_obj.previous_page_number }}">précédente</a>
+        {% endif %}
+    
+        <span>
+            Page {{ page_obj.number }} sur {{ page_obj.paginator.num_pages }}.
+
+        </span>
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">suivante</a>
+            
+            <a href="?page={{ page_obj.paginator.num_pages }}">dernière »</a>
+        {% endif %}
+    </span>
 
 </div>
 {% endblock content %}

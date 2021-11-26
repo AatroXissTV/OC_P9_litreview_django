@@ -7,32 +7,32 @@
                     <p class="card-text">{{ request.user }} published a review</p>
                 </div>
                 <div class="col-4">
-                    <p class="card-text card-align">{{ post.time_created }}</p>
+                    <p class="card-text card-align">{{ instance.time_created }}</p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-8">
-                    <h3 class="card-title"><a href="{% url 'view_review' post.id %}">{{ post.headline }}</a></h3>
+                    <h3 class="card-title"><a href="{% url 'view_review' instance.id %}">{{ instance.headline }}</a></h3>
                 </div>
                 <div class="col-4">
-                    <p class="card-text">{{ post.rating }}</p>
+                    <p class="card-text">{{ instance.rating }}</p>
                 </div>
             </div>
             <div class="row">
-                <p class="card-text">{{ post.description }}</p>
+                <p class="card-text">{{ instance.description }}</p>
             </div>
         </div>
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    <p class="card-text">{{ post.ticket.user }}</p>
+                    <p class="card-text">{{ instance.ticket.user }}</p>
                 </div>
                 <div class="row">
                     <div class="col-sm">
-                        <h3 class="card-title">{{ post.ticket.title }}</h3>
+                        <h3 class="card-title">{{ instance.ticket.title }}</h3>
                     </div>
                     <div class="col-sm">
-                        <img class="card-img-right" src="{{ post.ticket.image.url }}" alt="">
+                        <img class="card-img-right" src="{{ instance.ticket.image.url }}" alt="">
                     </div>
                 </div>
             </div>

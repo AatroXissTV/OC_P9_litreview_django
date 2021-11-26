@@ -4,18 +4,18 @@
         <div class="container">
             <div class="row row-margin">
                 <div class="col-8">
-                    <p class="card-text">{{ post.user }} asked for a review</p>
+                    <p class="card-text">{{ instance.user }} asked for a review</p>
                 </div>
                 <div class="col-4">
-                    <p class="card-text card-align">{{ post.time_created }}</p>
+                    <p class="card-text card-align">{{ instance.time_created }}</p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-8">
-                    <h3 class="card-title">{{ post.title }}</h5>
+                    <h3 class="card-title">{{ instance.title }}</h5>
                 </div>
                 <div class="col-4">
-                    <a href="{% url 'create_review_response' post.id %}" class="btn btn-ticket">Answer ticket</a>
+                    <a href="{% url 'create_review_response' instance.id %}" class="btn btn-ticket">Answer ticket</a>
                 </div>
             </div>
         </div>

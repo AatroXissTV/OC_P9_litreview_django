@@ -1,6 +1,7 @@
 # django imports
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 from django.db.models import Value, CharField
 from django.shortcuts import render, redirect, get_object_or_404
 
@@ -39,12 +40,18 @@ def feed(request):
         tlfr.append(review.ticket.id)
     ticket_list_for_review = Ticket.objects.filter(id__in=tlfr)
 
+    # paginate the feed
+    paginator = Paginator(feed, 1)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     # Initialize context
     context = {
         'feed': feed,
         'ticket_list_for_review': ticket_list_for_review,
         'users': User.objects.all(),
-        'ticket_id_reply': check_tickets_reply(request.user, tickets)
+        'ticket_id_reply': check_tickets_reply(request.user, tickets),
+        'page_obj': page_obj,
     }
     return render(request, 'app/feed.html', context)
 
