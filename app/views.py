@@ -41,7 +41,7 @@ def feed(request):
     ticket_list_for_review = Ticket.objects.filter(id__in=tlfr)
 
     # paginate the feed
-    paginator = Paginator(feed, 10)
+    paginator = Paginator(feed, 5)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 

@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container btn-feed-container">
+<div class="container sub-container">
     <div class="row">
-        <h3>Follow other users</h3>
+        <h2 class="card-headline">Follow new users</h2>
+        <p class="card-body">You can search and add new users to your follows list.</p>
     </div>
     <div class="row">
         <form method="post">
@@ -10,46 +11,76 @@
             <input type="search" name="follow">
         </form>
     </div>
-</div> 
-<div class="container feed-container">
+</div>
+
+<div class="container sub-container">
     <div class="row">
-        <h3>Follows</h3>
+        <h2 class="card-headline">Your follows</h2>
+        <p class="card-body">Here you can see all users you follow.</p>
+    </div>
+    <div class="row">
         {% if follows %}
             {% for follows_user in follows %}
-            <div class="card card-margin">
+            <div class="card card-sub">
                 <div class="card-body">
                     <div class="container">
                         <div class="row">
-                            <div class="col-8">
-                                <p class="card-text">{{ follows_user.username }}</p>
+                            <div class="col-9">
+                                <p class="card-headline">{{ follows_user.username }}</p>
                             </div>
-                            <div class="col-4 card-align">
+                            <div class="col-3">
                                 <form method="post">
                                     {% csrf_token %}
-                                    <button type="submit" name="unfollow" value="{{ follows_user.id }}">Unfollow</button>
-                                </form>      
-                            </div>  
+                                    <button class="btn-unfollow" type="submit" name="unfollow" value="{{ follows_user.id }}"> Unfollow</button>
+                                </form>
+                            </div>
                         </div>
-                    </div>       
+                    </div>
                 </div>
             </div>
             {% endfor %}
         {% else %}
-            <p>You are not following anyone.</p>
+            <div class="card card-sub">
+                <div class="card-body">
+                    <div class="container">
+                        <div class="row">
+                            <p class="card-headline" style="text-align: center;">You are not following anyone</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         {% endif %}
     </div>
+</div>
+
+<div class="container sub-container">
     <div class="row">
-        <h3>Your followers list</h3>
+        <h2 class="card-headline">Your followers list</h2>
+        <p class="card-body">Here you can see all users that follows your account.</p>
+    </div>
+    <div class="row">
         {% if followers %}
             {% for followed_by_user in followers %}
-            <div class="card card-margin">
+            <div class="card card-sub">
                 <div class="card-body">
-                    <p class="card-text">{{ followed_by_user.username }}</p>          
+                    <div class="container">
+                        <div class="row">
+                                <p class="card-headline">{{ followed_by_user.username }}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             {% endfor %}
         {% else %}
-            <p>You have no followers.</p>
+            <div class="card card-sub">
+                <div class="card-body">
+                    <div class="container">
+                        <div class="row">
+                            <p class="card-headline" style="text-align: center;">You have no followers yet</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         {% endif %}
     </div>
 </div>

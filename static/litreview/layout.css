@@ -28,32 +28,9 @@
     margin-top: 200px;
 }
 
-.values-container {
-    margin-top: 30px;
-    margin-bottom: 30px;
-    padding: 0%;
-}
-
-.btn-hp {
-    background-color: var(--accent-color-2);
-    border-color: var(--complementary-color);
-    color: var(--complementary-color);
-    font-family: var(--body-font);
-    text-transform: uppercase;
-    font-weight: 500;
-    border-width: 1px;
-    font-size: var(--medium-font-size);
-    padding: 8px 18px;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    border-radius: 10px;
-    margin-top: 30px;
-    margin-bottom: 30px;
-}
-
 .hp-signup {
     font-size: 12px;
+    text-align: center;
 }
 
 /* css for feed container */
@@ -61,17 +38,22 @@
     margin-top: 50px;
 }
 
-.btn-ticket {
-    border-color: var(--complementary-color);
-    border-width: 1px;
-    border-radius: 10px;
-    background-color: var(--accent-color);
-    color: var(--complementary-color);
-    font-family: var(--body-font);
-    text-transform: uppercase;
-    font-weight: 500;
-    font-size: var(--medium-font-size);
-    padding: 8px 18px;
-    text-decoration: none;
-    font-size: 16px;
+
+/* Align items */
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.right {
+    display: flex;
+    justify-content: end;
+    align-items: flex-end;
+}
+
+/* footer container */
+.last-container {
+    margin-top: 50px;
+    margin-bottom: 100px;
 }

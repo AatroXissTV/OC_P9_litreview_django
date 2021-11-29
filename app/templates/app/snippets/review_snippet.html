@@ -80,5 +80,18 @@
             </div>
         </div>
     </div>
+    {% if request.user == instance.user %}
+    <div class="card-body">
+        <div class="container">
+            <div class="row row-margin">
+                <div class="col-8">
+                </div>
+                <div class="col-4">
+                    <a href="{% url 'edit_review' instance.id %}" class="btn btn-feed">Edit</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
 </div>
 {% endblock %}

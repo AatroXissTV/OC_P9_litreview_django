@@ -20,27 +20,52 @@
             {% include './snippets/review_snippet.html' %}
         {% endif %}
     {% empty %}
-    <p>No posts yet</p>
+        <div class="card card-sub">
+            <div class="card-body">
+                <div class="container">
+                    <div class="row">
+                        <p class="card-headline" style="text-align: center;">No posts in feed yet</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     {% endfor %}
 </div>
 
-<div class="container sub-container">
-    <span>
-        {% if page_obj.has_previous %}
-            <a href="?page=1">« première</a>
-            <a href="?page={{ page_obj.previous_page_number }}">précédente</a>
-        {% endif %}
-    
-        <span>
-            Page {{ page_obj.number }} sur {{ page_obj.paginator.num_pages }}.
-
-        </span>
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">suivante</a>
-            
-            <a href="?page={{ page_obj.paginator.num_pages }}">dernière »</a>
-        {% endif %}
-    </span>
-
+<div class="container last-container">
+    <nav aria-label="">
+        <div class="row">
+            <div class="col-auto mr-auto">
+                <p class="card-user">Page {{ page_obj.number }} sur {{ page_obj.paginator.num_pages }}.</p>
+            </div>
+            <div class="col-auto mr-auto">
+                <ul class="pagination">
+                    {% if page_obj.has_previous %}
+                    <li class="page-item">
+                            <a class="page-link page-nav" href="?page=1">First page</a>
+                    </li>
+                    {% endif %}
+        
+                    {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link page-nav" href="?page={{ page_obj.previous_page_number }}" tabindex="-1">Previous</a>
+                    </li>
+                    {% endif %}
+        
+                    {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link page-nav" href="?page={{ page_obj.next_page_number }}">Next</a>
+                    </li>
+                    {% endif %}
+        
+                    {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link page-nav" href="?page={{ page_obj.paginator.num_pages }}">Last page</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
 </div>
 {% endblock content %}

@@ -41,7 +41,9 @@
                             {{ form.password2 }}
                             {% csrf_token %}
                         </div>
-                        <button type="submit" class="btn-hp">Sign up</button>
+                        <div class="container center">
+                            <button type="submit" class="btn-hp">Sign up</button>
+                        </div>
                     </form>
                     <p class="hp-signup">Already have an account? Click <a href="{% url 'login' %}"> here </a>to login!</p>
                 </div>

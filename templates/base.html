@@ -53,10 +53,11 @@
         <div class="row">
           <p class="welcome-message">Welcome {{ request.user }} !</p>
         </div>
+      {% endif %}
 
         <!-- main content -->
         {% block content %}{% endblock content%}
       </div>
-      {% endif %}
+
 </body>
 </html>
