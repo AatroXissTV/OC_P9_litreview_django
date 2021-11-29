@@ -6,7 +6,7 @@ from django.db.models import Value, CharField
 from django.shortcuts import render, redirect, get_object_or_404
 
 # local imports
-from .forms import DeleteReviewForm, TicketForm, ReviewForm
+from .forms import DeleteReviewForm, DeleteTicketForm, TicketForm, ReviewForm
 from .models import Ticket, Review, UserFollows
 from .getfeed import get_reviews_for_feed, get_tickets_for_feed
 from .getfeed import check_tickets_reply
@@ -152,6 +152,67 @@ def edit_review(request, review_id):
         'delete_review': delete_review,
     }
     return render(request, 'app/edit_review.html', context=context)
+
+
+@login_required
+def edit_ticket(request, ticket_id):
+    """ Represents the edit ticket page of the user """
+
+    ticket = get_object_or_404(Ticket, id=ticket_id)
+    edit_ticket = TicketForm(instance=ticket)
+    delete_ticket = DeleteTicketForm()
+    if request.method == 'POST':
+        # check if edit_ticket is in request.POST
+        if 'edit_ticket' in request.POST:
+            edit_ticket = TicketForm(request.POST, instance=ticket)
+            if edit_ticket.is_valid():
+                edit_ticket.save()
+                return redirect('feed')
+        # check if delete_ticket is in request.POST
+        if 'delete_ticket' in request.POST:
+            delete_ticket = DeleteTicketForm(request.POST)
+            if delete_ticket.is_valid():
+                ticket.delete()
+                return redirect('feed')
+
+    # Initialize context
+    context = {
+        'edit_ticket': edit_ticket,
+        'delete_ticket': delete_ticket,
+    }
+    return render(request, 'app/edit_ticket.html', context=context)
+
+
+@login_required
+def view_posts(request):
+    """ Represent the view user posts page of the user """
+
+    # get all reviews of the user
+    reviews = Review.objects.filter(user=request.user)
+    reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
+
+    # get all tickets of the user
+    tickets = Ticket.objects.filter(user=request.user)
+    tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
+
+    # chain reviews & tickets and sort by time_created
+    posts = sorted(
+        chain(reviews, tickets),
+        key=lambda x: x.time_created,
+        reverse=True
+    )
+
+    # paginate the posts
+    paginator = Paginator(posts, 5)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    # Initialize context
+    context = {
+        'posts': posts,
+        'page_obj': page_obj,
+    }
+    return render(request, 'app/view_posts.html', context)
 
 
 @login_required

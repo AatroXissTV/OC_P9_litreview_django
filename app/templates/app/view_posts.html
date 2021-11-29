@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container sub-container">
+    {% for instance in page_obj %}
+        {% if instance.content_type == 'TICKET' %}
+            {% include './snippets/ticket_snippet.html' %}
+        {% elif instance.content_type == 'REVIEW' %}
+            {% include './snippets/review_snippet.html' %}
+        {% endif %}
+    {% empty %}
+        <div class="card card-sub">
+            <div class="card-body">
+                <div class="container">
+                    <div class="row">
+                        <p class="card-headline" style="text-align: center;">You have not published posts yet</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock content%}

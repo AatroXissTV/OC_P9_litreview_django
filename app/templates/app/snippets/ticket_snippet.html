@@ -19,6 +19,17 @@
                 </div>
             </div>
         </div>
+    {% if request.user == instance.user %}
+        <div class="container">
+            <div class="row">
+                <div class="col-8">
+                </div>
+                <div class="col-4">
+                    <a href="{% url 'edit_ticket' instance.id %}" class="btn btn-feed">Edit</a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
     </div>
 </div>
 {% endblock %}

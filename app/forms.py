@@ -8,9 +8,18 @@ from . import models
 class TicketForm(forms.ModelForm):
     """ Represents the form for creating a new ticket """
 
+    edit_ticket = forms.BooleanField(widget=forms.HiddenInput(), required=True)
+
     class Meta:
         model = models.Ticket
         fields = ['title', 'description', 'image']
+
+
+class DeleteTicketForm(forms.Form):
+    """ Represents the form for deleting a ticket """
+
+    delete_review = forms.BooleanField(widget=forms.HiddenInput,
+                                       initial=True)
 
 
 class ReviewForm(forms.ModelForm):
