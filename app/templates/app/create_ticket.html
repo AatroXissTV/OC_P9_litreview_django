@@ -1,23 +1,31 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container btn-feed-container">
+<div class="container sub-container">
     <div class="row">
-        <h3>Create a ticket</h3>
+        <h2 class="card-headline">Create a new ticket</h2>
+        <p class="card-body">Create a new ticket to request a review of your book written by one of your followers</p>
     </div>
 </div>
-<div class="container feed-container">
-    <div class="card card-margin">
-        <div class="card-body">
-            <form method="post" enctype="multipart/form-data">
-                <h6>Title</h6>
-                {{ form.title }}
-                <h6>Description</h6>
-                {{ form.description }}
-                <h6>Image</h6>
-                {{ form.image }}
-                {% csrf_token %}
-                <button type="submit" class="btn-hp">Post</button>
-            </form>         
+
+<div class="container sub-container">
+    <div class="row">
+        <div class="card card-sub">
+            <div class="card-body">
+                <form method="post">
+                    <div class="container">
+                        <h6>Title</h6>
+                        {{ form.title }}
+                        <h6>Description</h6>
+                        {{ form.description }}
+                        <h6>Image</h6>
+                        {{ form.image }}
+                        {% csrf_token %}
+                    </div>
+                    <div class="container center">
+                        <button type="submit" class="btn-hp">Post your ticket</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>

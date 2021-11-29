@@ -1,37 +1,50 @@
 {% extends 'base.html' %}
-
-
 {% block content %}
-<div class="container btn-feed-container">
+<div class="container sub-container">
     <div class="row">
-        <h3>Answer to a ticket</h3>
+        <h2 class="card-headline">Answer to a ticket</h2>
+        <p class="card-body">You can now create a review for the selected ticket</p>
     </div>
 </div>
-<div class="container feed-container">
-    {% include './snippets/ticket_snippet_for_review.html' %}
-</div>
-<div class="container feed-container">
-    <div class="card">
-        <div class="card-body">
-            <div class="container">
-                <div class="row row-margin">
-                    <h3 class="card-title">Please give your review below</h3>
+
+<div class="container">
+    <div class="row">
+        <div class="card card-sub">
+            <div class="card-body">
+                <div class="row">
+                    <h2 class="card-headline">You are answering to the following ticket</h2>
                 </div>
-                <div class="row row-margin">
-                    <form method="POST" enctype="multipart/form-data">
-                        <h6>Rating</h6>
-                        {{ review_form.rating }}
-                        <h6>Title</h6>
-                        {{ review_form.headline }}
-                        <h6>Review</h6>
-                        {{ review_form.body }}
-                        {{ review_form.edit_review }}
-                        {% csrf_token %}
-                        <button type="submit" class="btn-hp">Submit</button>
-                    </form>
+            </div>
+            <div class="row row-margin">
+                <div class="container">
+                    {% include './snippets/ticket_snippet_for_review.html' %}
                 </div>
             </div>
         </div>
     </div>
-</div>  
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="card card-sub">
+            <div class="card-body">
+                <form method="post">
+                    <div class="row">
+                        <h6>Review Title</h6>
+                        {{ review_form.headline}}
+                        <h6>Rating</h6>
+                        {{ review_form.rating}}
+                        <h6>Your review</h6>
+                        {{ review_form.body}}
+                        {{ review_form.edit_review}}
+                        {% csrf_token %}
+                    </div>
+                    <div class="container center">
+                        <button type="submit" class="btn-hp">Post your answer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 {%endblock%}

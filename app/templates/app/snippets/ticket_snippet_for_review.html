@@ -1,27 +1,24 @@
 {% block content %}
-<div class="card card-margin">
+<div class="card card-in-review">
     <div class="card-body">
         <div class="container">
             <div class="row row-margin">
                 <div class="col-8">
-                    {% for user in users %}
-                    {% if user.id == ticket.id %}
-                        <p class="card-text">This ticket was published by {{ user }}</p>
-                    {% endif %}
-                {% endfor %}
+                    <p class="card-user">This ticket was published by {{ ticket.user }}</p>
                 </div>
                 <div class="col-4">
-                    <p class="card-text">{{ ticket.time_created }}</p>
+                    <p class="card-date">{{ ticket.time_created }}</p>
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm">
-                    <h3 class="card-text">{{ ticket.title }}</h3>
-                    <p class="card-text">{{ ticket.description }}</p>
+                <div class="col-9">
+                    <h2 class="card-headline">{{ ticket.title }}</h2>
+                    <p class="card-body">{{ ticket.description }}</p>
                 </div>
-                <div class="col-sm">
+                <div class="col-3 card-cover">
                     <img src="{{ ticket.image.url }}" alt="">
                 </div>
+
             </div>
         </div>
     </div>

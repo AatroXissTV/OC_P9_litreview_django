@@ -1,16 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container btn-feed-container">
+<div class="container sub-container">
     <div class="row">
-        <h3>Create a review</h3>
+        <h2 class="card-headline">Create a new review</h2>
     </div>
 </div>
-<div class="container feed-container">
-    <div class="card card-margin">
-        <div class="card-body">
-            <div class="container">
+
+<div class="container sub-container">
+    <div class="row">
+        <div class="card card-sub">
+            <div class="card-body">
                 <form method="post">
-                    <div class="row row-margin">
+                    <div class="row">
                         <h6>Title</h6>
                         {{ ticket_form.title }}
                         <h6>Description</h6>
@@ -19,7 +20,7 @@
                         {{ ticket_form.image }}
                     </div>
                     <hr>
-                    <div class="row row-margin">
+                    <div class="row">
                         <h6>Rating</h6>
                         {{ review_form.rating }}
                         <h6>Title</h6>
@@ -28,9 +29,8 @@
                         {{ review_form.body }}
                         {{ review_form.edit_review }}
                     </div>
-                    <div class="row row-margin">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-hp">Save</button>
+                    <div class="container center">
+                        <button type="submit" class="btn-hp">Post your review</button>
                     </div>
                 </form>
             </div>
