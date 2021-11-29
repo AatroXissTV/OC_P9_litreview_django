@@ -8,7 +8,7 @@ from . import models
 class TicketForm(forms.ModelForm):
     """ Represents the form for creating a new ticket """
 
-    edit_ticket = forms.BooleanField(widget=forms.HiddenInput(), required=True)
+    edit_ticket = forms.BooleanField(widget=forms.HiddenInput(), initial=True)
 
     class Meta:
         model = models.Ticket

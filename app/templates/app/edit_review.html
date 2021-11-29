@@ -1,27 +1,49 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container btn-feed-container">
+<div class="container sub-container">
     <div class="row">
-        <h2>Edit Review</h2>
+        <h2 class="card-headline">Edit your Review</h2>
     </div>
 </div>
-<div class="container feed-container">
-    <div class="card">
-        <div class="card-body">
-            <form method="post">
-                {{ edit_review.as_p }}
-                {% csrf_token %}
-                <button type="submit">Save</button>
-            </form>
+
+<div class="container sub-container">
+    <div class="row">
+        <div class="card card-sub">
+            <div class="card-body">
+                <form method="post">
+                    <div class="container">
+                        <h6>Rating</h6>
+                        {{ edit_review.rating }}
+                        <h6>Headline</h6>
+                        {{edit_review.headline}}
+                        <h6>Review</h6>
+                        {{edit_review.body}}
+                        {{ edit_review.edit_review }}
+                        {% csrf_token %}
+                    </div>
+                    <div class="container center">
+                        <button type="edit_review" class="btn-hp">Save your edit</button>
+                    </div>
+                </form>
+            </div>
         </div>
-        <hr>
-        <div class="card-body">
-            <h5 class="card-title">Delete Review</h5>
-            <form method="post">
-                {{ delete_review }}
-                {% csrf_token %}
-                <button type="submit">Delete</button>
-            </form>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="card card-sub">
+            <div class="card-body">
+                <form method="post">
+                    <div class="container">
+                        {{ delete_review }}
+                        {% csrf_token %}
+                    </div>
+                    <div class="container center">
+                        <button type="delete_review" class="btn-hp">Delete your review </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
