@@ -161,6 +161,7 @@ def edit_ticket(request, ticket_id):
     ticket = get_object_or_404(Ticket, id=ticket_id)
     edit_ticket = TicketForm(instance=ticket)
     delete_ticket = DeleteTicketForm()
+    print(request.POST)
     if request.method == 'POST':
         # check if edit_ticket is in request.POST
         if 'edit_ticket' in request.POST:

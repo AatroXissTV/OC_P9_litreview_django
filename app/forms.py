@@ -18,13 +18,15 @@ class TicketForm(forms.ModelForm):
 class DeleteTicketForm(forms.Form):
     """ Represents the form for deleting a ticket """
 
-    delete_review = forms.BooleanField(widget=forms.HiddenInput,
+    delete_ticket = forms.BooleanField(widget=forms.HiddenInput,
                                        initial=True)
 
 
 class ReviewForm(forms.ModelForm):
     """ Represents the form for creating a new review """
 
+    rating = forms.ChoiceField(choices=[(i, i) for i in range(1, 6)],
+                               widget=forms.RadioSelect())
     edit_review = forms.BooleanField(widget=forms.HiddenInput, initial=True)
 
     class Meta:

@@ -112,6 +112,8 @@ li {
     list-style: none;
     font-family: var(--body-font);
     color: var(--complementary-color);
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 textarea {

@@ -10,7 +10,7 @@
     <div class="row">
         <div class="card card-sub">
             <div class="card-body">
-                <form method="post">
+                <form method="post" enctype="multipart/form-data">
                     <div class="row">
                         <h6>Title</h6>
                         {{ ticket_form.title }}
@@ -22,7 +22,9 @@
                     <hr>
                     <div class="row">
                         <h6>Rating</h6>
-                        {{ review_form.rating }}
+                        <div class="container">
+                            {{ review_form.rating }}
+                        </div>
                         <h6>Title</h6>
                         {{ review_form.headline }}
                         <h6>Description</h6>
