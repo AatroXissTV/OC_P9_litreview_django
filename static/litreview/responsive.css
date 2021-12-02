@@ -1,5 +1,19 @@
 @media (max-width: 1250px) {
 
+    h1 {
+        font-size: var(--large-font-size) !important;
+    }
+
+    h2 {
+        font-size: var(--body-font-size) !important;
+    }
+
+    .values-container {
+        margin-top: 30px;
+        padding-right: 0;
+        padding-left: 0;
+    }
+
     .main-container {
         padding-left: 10px;
         padding-right: 10px;
