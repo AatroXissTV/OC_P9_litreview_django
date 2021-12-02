@@ -9,12 +9,14 @@
 @import url(layout.css);
 @import url(review.css);
 @import url(components.css);
+@import url(responsive.css);
 
 /* variable css for colors & fonts */
 :root {
   
     /* colors (3 colors: 1 dominant(60%), 1 complementary (30%), 2 accent (5%) */
     --dominant-color: #F0E9E0;
+    --dominant-color-dark: #E4D8C8;
     --complementary-color: #2C1810;
     --accent-color: #64866E;
     --accent-color-2: #DAAA63;

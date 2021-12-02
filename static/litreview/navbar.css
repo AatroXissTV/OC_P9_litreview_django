@@ -22,3 +22,11 @@
 .nav-link {
     color: var(--complementary-color) !important;
 }
+
+.custom-icon {
+    background-image: url(../../media/burger.png) !important;
+}
+
+.custom-navbar-collapse {
+    background-color: var(--dominant-color-dark);
+}
