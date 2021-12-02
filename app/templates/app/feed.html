@@ -1,6 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="row">
+    {% if number_of_u_reviews == 0 %}
+        <p class="welcome-message">You have not yet published any reviews.</p>
+    {% else %}
+        <p class="welcome-message">You have published {{ number_of_u_reviews }} reviews!</p>
+    {% endif %}
+</div>
+
 <div class="container sub-container">
     <div class="row">
         <div class="col-sm">

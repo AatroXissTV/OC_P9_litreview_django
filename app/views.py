@@ -8,8 +8,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 # local imports
 from .forms import DeleteReviewForm, DeleteTicketForm, TicketForm, ReviewForm
 from .models import Ticket, Review, UserFollows
-from .getfeed import get_reviews_for_feed, get_tickets_for_feed
-from .getfeed import check_tickets_reply
+from .getfeed import get_number_of_reviews, get_reviews_for_feed
+from .getfeed import check_tickets_reply, get_tickets_for_feed
 
 # third party imports
 from itertools import chain
@@ -25,6 +25,7 @@ def feed(request):
     """ Represent the feed page of the user """
 
     # get reviews for feed
+    number_of_u_reviews = get_number_of_reviews(request.user)
     reviews = get_reviews_for_feed(request.user)
     reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
     # get tickets for feed
@@ -48,6 +49,7 @@ def feed(request):
     # Initialize context
     context = {
         'feed': feed,
+        'number_of_u_reviews': number_of_u_reviews,
         'ticket_list_for_review': ticket_list_for_review,
         'users': User.objects.all(),
         'ticket_id_reply': check_tickets_reply(request.user, tickets),

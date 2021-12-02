@@ -1,6 +1,19 @@
 from .models import Review, Ticket, UserFollows
 
 
+def get_number_of_reviews(userid):
+
+    # Initialize the number of reviews
+    number_of_reviews = 0
+
+    # query user reviews
+    query_reviews = Review.objects.filter(user_id=userid)
+    for q_review in query_reviews:
+        number_of_reviews += 1
+
+    return number_of_reviews
+
+
 def get_reviews_for_feed(userid):
     followers = UserFollows.objects.filter(user_id=userid)
     followers_ids = [userid.id]
