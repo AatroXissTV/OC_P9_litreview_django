@@ -43,10 +43,24 @@ def get_tickets_for_feed(userid):
     return(Ticket.objects.filter(user_id__in=followers_ids).distinct())
 
 
-def check_tickets_reply(userid, tickets_feed):
-    reviews = Review.objects.filter(user_id=userid)
-    tickets_reply_id = []
-    for review in reviews:
-        tickets_reply_id.append(review.ticket_id)
+def check_tickets_reply(userid, tickets):
 
-    return(tickets_reply_id)
+    # Initialize tickets lists
+    answered_tickets = []
+    not_answered_tickets = []
+
+    # Check if the ticket has a reply by a user
+    for ticket in tickets:
+        if ticket.user == userid:
+            #  check if a review has the same user as the ticket
+            q_reviews = Review.objects.filter(ticket_id=ticket.id)
+            for review in q_reviews:
+                if review.user == userid:
+                    answered_tickets.append(ticket.id)
+                else:
+                    not_answered_tickets.append(ticket.id)
+        else:
+            not_answered_tickets.append(ticket.id)
+
+    return(Ticket.objects.filter(id__in=answered_tickets).distinct(),
+           Ticket.objects.filter(id__in=not_answered_tickets).distinct())

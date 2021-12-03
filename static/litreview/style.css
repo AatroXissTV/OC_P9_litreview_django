@@ -10,6 +10,7 @@
 @import url(review.css);
 @import url(components.css);
 @import url(responsive.css);
+@import url(paginator.css);
 
 /* variable css for colors & fonts */
 :root {

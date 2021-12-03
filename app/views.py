@@ -9,7 +9,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import DeleteReviewForm, DeleteTicketForm, TicketForm, ReviewForm
 from .models import Ticket, Review, UserFollows
 from .getfeed import get_number_of_reviews, get_reviews_for_feed
-from .getfeed import check_tickets_reply, get_tickets_for_feed
+from .getfeed import get_tickets_for_feed, check_tickets_reply
 
 # third party imports
 from itertools import chain
@@ -24,22 +24,28 @@ User = get_user_model()
 def feed(request):
     """ Represent the feed page of the user """
 
-    # get reviews for feed
+    # get the number of reviews published by a user
     number_of_u_reviews = get_number_of_reviews(request.user)
+
+    # get reviews for feed
     reviews = get_reviews_for_feed(request.user)
     reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
+
     # get tickets for feed
     tickets = get_tickets_for_feed(request.user)
-    tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
+
+    # check if user has published and answered a ticket
+    a_tickets, not_a_tickets = check_tickets_reply(request.user, tickets)
+    a_tickets = a_tickets.annotate(
+        content_type=Value('ANSWERED_TICKET', CharField()))
+    not_a_tickets = not_a_tickets.annotate(
+        content_type=Value('TICKET', CharField()))
+
     # chain reviews & tickets and sort by time_created
     feed = sorted(
-        chain(reviews, tickets),
+        chain(reviews, a_tickets, not_a_tickets),
         key=lambda x: x.time_created,
         reverse=True)
-    tlfr = []
-    for review in reviews:
-        tlfr.append(review.ticket.id)
-    ticket_list_for_review = Ticket.objects.filter(id__in=tlfr)
 
     # paginate the feed
     paginator = Paginator(feed, 5)
@@ -50,9 +56,6 @@ def feed(request):
     context = {
         'feed': feed,
         'number_of_u_reviews': number_of_u_reviews,
-        'ticket_list_for_review': ticket_list_for_review,
-        'users': User.objects.all(),
-        'ticket_id_reply': check_tickets_reply(request.user, tickets),
         'page_obj': page_obj,
     }
     return render(request, 'app/feed.html', context)
@@ -196,11 +199,17 @@ def view_posts(request):
 
     # get all tickets of the user
     tickets = Ticket.objects.filter(user=request.user)
-    tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
+
+    # check if user has published and answered a ticket
+    a_tickets, not_a_tickets = check_tickets_reply(request.user, tickets)
+    a_tickets = a_tickets.annotate(
+        content_type=Value('ANSWERED_TICKET', CharField()))
+    not_a_tickets = not_a_tickets.annotate(
+        content_type=Value('TICKET', CharField()))
 
     # chain reviews & tickets and sort by time_created
     posts = sorted(
-        chain(reviews, tickets),
+        chain(reviews, a_tickets, not_a_tickets),
         key=lambda x: x.time_created,
         reverse=True
     )

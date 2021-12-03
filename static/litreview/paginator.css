@@ -1,0 +1,25 @@
+/* ============  PAGINATOR  ================ */
+
+.page-nav {
+    position: relative;
+    display: block;
+    color: var(--complementary-color);
+    text-decoration: none;
+    background-color: var(--white-color);
+    border: 1px solid var(--complementary-color);
+
+    font-size: 12px;
+    font-family: var(--complementary-color);
+}
+
+.page-nav:hover {
+    background-color: var(--accent-color);
+    color: var(--white-color);
+    border-color: var(--complementary-color);
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.page-item {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}

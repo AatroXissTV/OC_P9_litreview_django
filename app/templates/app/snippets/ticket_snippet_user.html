@@ -1,0 +1,30 @@
+{% block content %}
+<div class="card card-feed">
+    <div class="card-body">
+        <div class="container">
+            <div class="row row-margin">
+                <div class="col-8">
+                    <p class="card-user">{{ instance.user }} asked for a review</p>
+                </div>
+                <div class="col-4">
+                    <p class="card-text card-time">{{ instance.time_created }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <h2 class="card-headline">{{ instance.title }}</h2>
+            </div>
+        </div>
+    {% if request.user == instance.user %}
+        <div class="container">
+            <div class="row">
+                <div class="col-8">
+                </div>
+                <div class="col-4">
+                    <a href="{% url 'edit_ticket' instance.id %}" class="btn btn-feed">Edit</a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    </div>
+</div>
+{% endblock %}
