@@ -45,22 +45,28 @@ def get_tickets_for_feed(userid):
 
 def check_tickets_reply(userid, tickets):
 
-    # Initialize tickets lists
+    # initialize tickets lists
     answered_tickets = []
-    not_answered_tickets = []
+    unanswered_tickets = []
 
-    # Check if the ticket has a reply by a user
+    # loop through tickets
     for ticket in tickets:
-        if ticket.user == userid:
-            #  check if a review has the same user as the ticket
-            q_reviews = Review.objects.filter(ticket_id=ticket.id)
+        # check if the ticket is answered
+        q_reviews = Review.objects.filter(ticket=ticket.id)
+        if q_reviews.count() > 0:
+            # check the if the review is from the user
             for review in q_reviews:
+                # if the review is from the user, the ticket is answered
                 if review.user == userid:
                     answered_tickets.append(ticket.id)
+                # else the ticket is not answered
                 else:
-                    not_answered_tickets.append(ticket.id)
+                    unanswered_tickets.append(ticket.id)
         else:
-            not_answered_tickets.append(ticket.id)
+            unanswered_tickets.append(ticket.id)
+
+    print("Answered tickets: ", answered_tickets)
+    print("Unanswered tickets: ", unanswered_tickets)
 
     return(Ticket.objects.filter(id__in=answered_tickets).distinct(),
-           Ticket.objects.filter(id__in=not_answered_tickets).distinct())
+           Ticket.objects.filter(id__in=unanswered_tickets).distinct())

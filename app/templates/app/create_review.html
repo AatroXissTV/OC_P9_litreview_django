@@ -18,6 +18,8 @@
                         {{ ticket_form.description }}
                         <h6>Image</h6>
                         {{ ticket_form.image }}
+                        {{ ticket_form.edit_ticket }}
+                        {% csrf_token %}
                     </div>
                     <hr>
                     <div class="row">
@@ -30,6 +32,7 @@
                         <h6>Description</h6>
                         {{ review_form.body }}
                         {{ review_form.edit_review }}
+                        {% csrf_token %}
                     </div>
                     <div class="container center">
                         <button type="submit" class="btn-hp">Post your review</button>
