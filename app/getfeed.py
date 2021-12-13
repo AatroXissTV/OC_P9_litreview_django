@@ -65,8 +65,5 @@ def check_tickets_reply(userid, tickets):
         else:
             unanswered_tickets.append(ticket.id)
 
-    print("Answered tickets: ", answered_tickets)
-    print("Unanswered tickets: ", unanswered_tickets)
-
     return(Ticket.objects.filter(id__in=answered_tickets).distinct(),
            Ticket.objects.filter(id__in=unanswered_tickets).distinct())
